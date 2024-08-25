@@ -1,0 +1,103 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_loaders/enchanting_ion.py
+  downstream_blocks:
+  - adding_document_id
+  executor_config: null
+  executor_type: local_python
+  groups:
+  - ingest
+  has_callback: false
+  language: python
+  name: Enchanting ion
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: enchanting_ion
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/transformers/adding_document_id.py
+  downstream_blocks:
+  - index_faq_documents
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: Adding_document_id
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - enchanting_ion
+  uuid: adding_document_id
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/data_exporters/index_faq_documents.py
+  downstream_blocks:
+  - get_es_query_results
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: index_faq_documents
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - adding_document_id
+  uuid: index_faq_documents
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: rager/custom/get_es_query_results.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: get_es_query_results
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - index_faq_documents
+  uuid: get_es_query_results
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-08-25 08:40:59.854458+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: homework-05-pipeline
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: homework_05_pipeline
+variables:
+  index_name: documents_20240825_2427_20240825_3807_20240825_4011_20240825_4050_20240825_4214_20240825_4338_20240825_4402_20240825_4553_20240825_4634
+variables_dir: /home/src/mage_data/rager
+widgets: []
